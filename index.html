@@ -2,117 +2,117 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Babussalam V12 Super App - Dashboard Hafalan Terintegrasi</title>
+<title>Babussalam V12 - Full 114 Surah - 10 Juz Certificate</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<style>body{font-family:Inter}.arab{font-family:Amiri}</style>
+<style>body{font-family:Inter}.arab{font-family:Amiri;}</style>
 </head>
-<body class="bg-[#e8f5f3] text-slate-800">
+<body class="bg-[#e8f5f3] pb-24">
 
-<!-- HEADER LIVE URL -->
-<div class="bg-teal-700 text-white p-3 flex justify-between items-center">
-  <div class="flex items-center gap-2"><span class="text-2xl">🌙</span><b>Babussalam V12 Super App</b></div>
-  <span class="bg-yellow-600 px-3 py-1 rounded-full text-xs">Admin Santri ▼</span>
+<!-- HEADER -->
+<div class="bg-teal-700 text-white p-3 flex justify-between items-center sticky top-0 z-40">
+  <div class="flex items-center gap-2"><span class="text-2xl">🌙</span><div><b>Babussalam V12 Full 114</b><br><small class="text-xs">30 Juz • 114 Surah • 10 Juz Santri</small></div></div>
+  <span class="bg-yellow-600 px-3 py-1 rounded-full text-xs">10 Juz Mode</span>
 </div>
 
-<!-- CONFETTI BANNER 100% -->
-<div id="khatamBanner" class="bg-gradient-to-r from-teal-700 to-teal-600 text-white p-4 flex justify-between items-center">
-  <div><h1 class="text-xl font-bold">Alhamdulillah! 100% Khatam Surah An-Naba ✨</h1><p>Kamu telah menyelesaikan 100% hafalan — 40 Ayat. Barakallahu Fiik.</p></div>
-  <div class="bg-yellow-500 text-white font-black px-6 py-3 rounded-2xl shadow-xl">100%<br>KHATAM AN-NABA</div>
+<!-- STATS 10 JUZ -->
+<div class="grid grid-cols-3 gap-2 p-3 max-w-7xl mx-auto">
+  <div class="bg-white rounded-xl p-3 text-center shadow"><h3 class="text-2xl font-black text-teal-700">10/30</h3><p class="text-[11px]">JUZ SELESAI</p><div class="h-2 bg-gray-200 rounded mt-1"><div class="h-2 bg-teal-600 rounded w-[33%]"></div></div></div>
+  <div class="bg-white rounded-xl p-3 text-center shadow"><h3 class="text-2xl font-black text-yellow-600">114</h3><p class="text-[11px]">SURAH TERSEDIA</p><div class="h-2 bg-gray-200 rounded mt-1"><div class="h-2 bg-yellow-500 rounded w-full"></div></div></div>
+  <div class="bg-white rounded-xl p-3 text-center shadow"><button onclick="openSertifikat()" class="bg-gradient-to-r from-yellow-500 to-teal-600 text-white px-2 py-2 rounded-xl font-bold text-xs w-full">🎓 CETAK SERTIFIKAT 10 JUZ</button></div>
 </div>
 
-<div class="grid md:grid-cols-3 gap-4 p-4 max-w-7xl mx-auto">
-  <!-- GRAFIK HAFALAN LIVE -->
+<!-- BANNER -->
+<div class="mx-3 max-w-7xl md:mx-auto bg-gradient-to-r from-teal-700 to-teal-600 text-white p-4 rounded-2xl flex justify-between items-center">
+  <div><h1 class="font-bold">Alhamdulillah 10 Juz! ✨</h1><p class="text-sm" id="bannerDesc">Santri telah menyelesaikan Juz 21-30 (114 Surah ter-cover)</p></div>
+  <div class="bg-yellow-500 font-black px-4 py-2 rounded-2xl text-center text-sm">10 JUZ<br>KHATAM</div>
+</div>
+
+<div class="grid md:grid-cols-3 gap-3 p-3 max-w-7xl mx-auto">
   <div class="bg-white rounded-2xl p-4 shadow">
-    <h2 class="font-bold">📈 Grafik Hafalan Live</h2><small>Update Real-time • Okt 2024</small>
-    <canvas id="chartHafalan" height="150" class="my-3"></canvas>
-    <div class="bg-yellow-50 p-3 rounded-xl">
-      <p><b>Target Mingguan</b> Target: 5 Ayat/Hari <span class="float-right font-bold">5/5</span></p>
-      <div class="w-full bg-gray-200 h-2 rounded"><div class="bg-yellow-500 h-2 w-full rounded"></div></div>
-      <p class="text-sm mt-1">Selesai! 🔥 7/7 hari <span class="float-right">100%</span></p>
-      <p class="mt-2 text-sm"><b>Total Bulan Ini: 140 Ayat</b><br>Ringkasan Bulanan: 12/12 Surah • 100% Khatam ✓</p>
-    </div>
+    <h2 class="font-bold">📈 Grafik 10 Juz Live</h2><small class="text-xs">Juz 21 → Juz 30</small>
+    <canvas id="chart" height="160" class="my-2 border rounded"></canvas>
+    <div class="bg-yellow-50 p-2 rounded-xl text-xs"><b>Progress 114 Surah:</b> 82/114 surah hafal (10 Juz) • 2,150 ayat</div>
   </div>
 
-  <!-- LEADERBOARD + FILTER -->
   <div class="md:col-span-2 bg-white rounded-2xl p-4 shadow">
-    <div class="flex gap-2 mb-3">
-      <button onclick="filterData('harian')" id="f-harian" class="px-4 py-1 rounded-full border">Harian</button>
-      <button onclick="filterData('mingguan')" id="f-mingguan" class="px-4 py-1 rounded-full bg-teal-600 text-white">Mingguan</button>
-      <button onclick="filterData('bulanan')" id="f-bulanan" class="px-4 py-1 rounded-full border">Bulanan</button>
-      <select id="sortPoin" class="ml-auto border rounded-full px-3 text-sm"><option>Urutkan: Poin Tertinggi</option><option>Hafalan</option><option>Streak</option></select>
+    <div class="flex gap-2 mb-3 flex-wrap">
+      <select id="filterJuz" onchange="renderSurah()" class="border rounded-full px-3 py-1 text-xs"><option value="all">Semua 114 Surah</option><option value="30">Juz 30</option><option value="10juz">10 Juz (21-30)</option><option value="khatam">Sudah Khatam</option></select>
+      <input id="searchSurah" oninput="renderSurah()" placeholder="Cari Surah 1-114..." class="border rounded-full px-3 py-1 text-xs flex-1">
+      <button onclick="renderSurah('harian')" class="px-3 py-1 rounded-full border text-xs">Harian</button>
+      <button onclick="renderSurah('mingguan')" class="px-3 py-1 rounded-full bg-teal-600 text-white text-xs">Mingguan</button>
     </div>
-    <h3 class="font-bold mb-2">🏆 Leaderboard Santri Teraktif</h3>
-    <div id="listLeaderboard" class="space-y-3">
-      <!-- diisi JS -->
-    </div>
-    <p class="text-xs text-gray-400 mt-3">Diperbarui: 23 Okt 2024 • 09:12 WIB</p>
+    <h3 class="font-bold mb-2 text-sm">📖 Daftar 114 Surah</h3>
+    <div id="listSurah" class="max-h-[280px] overflow-y-auto space-y-1 text-xs pr-1"></div>
+    <h3 class="font-bold mt-4 mb-2 text-sm">🏆 Leaderboard 10 Juz</h3>
+    <div id="leaderboard" class="space-y-2 text-xs"></div>
   </div>
 </div>
 
-<!-- PUTAR SURAH -->
-<div class="fixed bottom-0 w-full bg-teal-800 text-white p-3 flex items-center gap-3">
-  <button onclick="triggerKhatamConfetti()" class="bg-yellow-500 rounded-full w-10 h-10 flex items-center justify-center">▶️</button>
-  <div><small>Sedang Diputar:</small><br><b>Surah An-Naba (Ayat 1-40) • 100% Selesai</b></div>
-  <span class="ml-auto text-xs">18:02 / 18:02 — 1.0x</span>
-  <button class="bg-yellow-600 px-3 py-1 rounded-full text-xs" onclick="sharePencapaian()">Bagikan Pencapaian</button>
+<!-- MODAL SERTIFIKAT -->
+<div id="modalSertifikat" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-3">
+  <div class="bg-white rounded-2xl p-4 max-w-lg w-full max-h-[90vh] overflow-y-auto">
+    <h2 class="font-black text-center">🎓 Generator Sertifikat 10 Juz</h2>
+    <p class="text-xs text-center mb-3">Full 114 Surah Edition</p>
+    <label class="text-xs font-bold">Nama Santri:</label>
+    <input id="namaSantri" placeholder="Contoh: Ahmad Fauzi bin Abdullah" class="w-full border rounded-full px-3 py-2 text-sm mt-1">
+    <label class="text-xs font-bold mt-2 block">Tanggal:</label>
+    <input id="tglSertifikat" type="date" class="w-full border rounded-full px-3 py-2 text-sm mt-1">
+    <canvas id="certCanvas" width="1200" height="850" class="w-full mt-3 border-4 border-yellow-500 rounded-xl bg-[#fffdf5]"></canvas>
+    <div class="grid grid-cols-2 gap-2 mt-3">
+      <button onclick="generateCert()" class="bg-teal-700 text-white py-2 rounded-full font-bold text-sm">Generate</button>
+      <button onclick="downloadCert()" class="bg-yellow-500 text-white py-2 rounded-full font-bold text-sm">Download PNG</button>
+    </div>
+    <button onclick="closeSertifikat()" class="w-full mt-2 border py-2 rounded-full text-xs">Tutup</button>
+  </div>
 </div>
 
-<!-- MODAL KHATAM -->
-<div id="khatamModal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
-  <div class="bg-white rounded-3xl p-8 text-center max-w-sm border-4 border-yellow-400">
-    <div class="text-5xl mb-2">🏆</div><h2 class="text-2xl font-black">Alhamdulillah!<br>Khatam An-Naba Selesai</h2>
-    <p class="my-3 text-sm">Selamat! Kamu telah menyelesaikan 100% hafalan Surah An-Naba — 40 Ayat. Barakallahu Fiik ✨</p>
-    <div class="bg-gradient-to-br from-yellow-400 to-yellow-600 text-white font-black text-3xl p-4 rounded-2xl my-4">100%<br>KHATAM AN-NABA</div>
-    <button onclick="sharePencapaian()" class="w-full bg-gradient-to-r from-yellow-500 to-teal-600 text-white py-2 rounded-full font-bold mb-2">🔗 Bagikan Pencapaian</button>
-    <button onclick="document.getElementById('khatamModal').classList.add('hidden')" class="w-full border-2 border-teal-700 py-2 rounded-full">Lanjut ke Surah Berikutnya</button>
-  </div>
+<!-- PLAYER -->
+<div class="fixed bottom-0 w-full bg-teal-800 text-white p-3 flex items-center gap-3 z-30">
+  <button onclick="confettiKhatam()" class="bg-yellow-500 rounded-full w-10 h-10">🎓</button>
+  <div class="text-xs"><small>Sedang Diputar:</small><br><b id="nowPlaying">Juz 21-30 • 114 Surah Full • Mode 10 Juz</b></div>
+  <button onclick="openSertifikat()" class="ml-auto bg-yellow-600 px-3 py-1 rounded-full text-xs">Cetak Sertifikat</button>
 </div>
 
 <script>
-// DATA LEADERBOARD
-const data = {
- harian: [{n:'Ahmad Fauzi',p:1250,s:'12 hari',b:'100% Khatam An-Naba'}, {n:'Siti Aisyah',p:980,s:'9 hari',b:'9/12 Khatam'}, {n:'Muhammad Rizki',p:820,s:'6 hari',b:'7/12 Khatam'}],
- mingguan: [{n:'Ahmad Fauzi',p:1250,s:'12 hari',b:'100% Khatam An-Naba'}, {n:'Siti Aisyah',p:980,s:'9 hari',b:'9/12 Surah Khatam'}, {n:'Muhammad Rizki',p:820,s:'6 hari',b:'7/12 Surah Khatam'}, {n:'Nurul Zahra',p:760,s:'5 hari',b:'6/12 Surah Khatam'}],
- bulanan: [{n:'Ahmad Fauzi',p:4250,s:'28 hari',b:'12/12 Khatam'}, {n:'Siti Aisyah',p:3180,s:'24 hari',b:'11/12 Khatam'}, {n:'Muhammad Rizki',p:2820,s:'22 hari',b:'10/12 Khatam'}]
-};
-function renderLeaderboard(key){
-  const list=document.getElementById('listLeaderboard'); list.innerHTML='';
-  data[key].forEach((x,i)=>{
-    list.innerHTML+=`<div class="flex justify-between items-center border-b pb-2"><div class="flex gap-2 items-center"><span class="font-bold">${i+1}. ${i==0?'🏆':i==1?'🥈':i==2?'🥉':'🎖️'}</span><b>${x.n}</b><span class="text-xs bg-yellow-100 px-2 rounded">${x.b}</span></div><div class="text-right text-sm">${x.p} pts<br>🔥 ${x.s}</div></div>`;
+// DATA 114 SURAH - RINGKAS
+const surah114=[];
+const names={1:"Al-Fatihah",2:"Al-Baqarah",3:"Ali Imran",78:"An-Naba",79:"An-Nazi'at",80:"Abasa",81:"At-Takwir",82:"Al-Infitar",83:"Al-Mutaffifin",84:"Al-Insyiqaq",85:"Al-Buruj",86:"At-Tariq",87:"Al-A'la",88:"Al-Ghasyiyah",89:"Al-Fajr",90:"Al-Balad",91:"Asy-Syams",92:"Al-Lail",93:"Ad-Duha",94:"Al-Insyirah",95:"At-Tin",96:"Al-Alaq",97:"Al-Qadr",98:"Al-Bayyinah",99:"Az-Zalzalah",100:"Al-Adiyat",101:"Al-Qari'ah",102:"At-Takasur",103:"Al-Asr",104:"Al-Humazah",105:"Al-Fil",106:"Quraisy",107:"Al-Ma'un",108:"Al-Kautsar",109:"Al-Kafirun",110:"An-Nasr",111:"Al-Lahab",112:"Al-Ikhlas",113:"Al-Falaq",114:"An-Nas"};
+for(let i=1;i<=114;i++){surah114.push({id:i,name:names[i]||"Surah "+i,juz:i<=20?Math.ceil(i/14):i<=40?21+Math.floor((i-21)/2):i<=78?29:30,ayat:Math.floor(5+Math.random()*200),khatam:i>=21})}
+function renderSurah(){
+  const juz=document.getElementById('filterJuz').value, q=document.getElementById('searchSurah').value.toLowerCase();
+  const list=document.getElementById('listSurah'); list.innerHTML='';
+  surah114.filter(s=>{if(juz=='10juz')return s.juz>=21; if(juz=='30')return s.juz==30; if(juz=='khatam')return s.khatam; return true;}).filter(s=>s.name.toLowerCase().includes(q)||s.id==q).forEach(s=>{
+    list.innerHTML+=`<div class="flex justify-between border-b py-1 ${s.khatam?'bg-yellow-50':''}"><span><b>${s.id}. ${s.name}</b> • Juz ${s.juz} • ${s.ayat} ayat</span><span>${s.khatam?'✅ 100%':Math.floor(Math.random()*80+10)+'%'}</span></div>`;
   });
 }
-function filterData(k){
-  document.querySelectorAll('[id^=f-]').forEach(b=>b.className='px-4 py-1 rounded-full border');
-  document.getElementById('f-'+k).className='px-4 py-1 rounded-full bg-teal-600 text-white';
-  renderLeaderboard(k);
-}
-renderLeaderboard('mingguan');
+renderSurah();
+document.getElementById('leaderboard').innerHTML=`<div class="flex justify-between border-b pb-1"><div>🏆 <b>Ahmad Fauzi - 10 Juz</b> <span class="bg-yellow-100 px-2 rounded">114 Surah Cover</span></div><div>12500 pts</div></div><div class="flex justify-between border-b pb-1"><div>🥈 Siti Aisyah - 8 Juz</div><div>9800 pts</div></div><div class="flex justify-between"><div>🥉 M. Rizki - 7 Juz</div><div>8200 pts</div></div>`;
 
-// CHART SIMPLE
-const ctx=document.getElementById('chartHafalan').getContext('2d');
-ctx.beginPath(); ctx.moveTo(10,80);
-[34,35,37,38,39,40].forEach((v,i)=>{ctx.lineTo(20+i*30, 90-v); ctx.fillText(v,18+i*30, 85-v);});
-ctx.strokeStyle='#0d7377'; ctx.lineWidth=2; ctx.stroke();
-
-// CONFETTI 100%
-function triggerKhatamConfetti(){
-  document.getElementById('khatamModal').classList.remove('hidden');
-  const end=Date.now()+4000;
-  (function frame(){
-    confetti({particleCount:6, angle:60, spread:70, origin:{x:0}, colors:['#D4AF37','#0D7377','#FFD700']});
-    confetti({particleCount:6, angle:120, spread:70, origin:{x:1}, colors:['#D4AF37','#0D7377','#FFD700']});
-    if(Date.now()<end) requestAnimationFrame(frame);
-  })();
-  confetti({particleCount:200, spread:100, origin:{y:0.6}});
+// CERTIFICATE
+function openSertifikat(){document.getElementById('modalSertifikat').classList.remove('hidden'); document.getElementById('tglSertifikat').valueAsDate=new Date(); generateCert();}
+function closeSertifikat(){document.getElementById('modalSertifikat').classList.add('hidden');}
+function generateCert(){
+  const c=document.getElementById('certCanvas'), x=c.getContext('2d'), nama=document.getElementById('namaSantri').value||'Nama Santri', tgl=document.getElementById('tglSertifikat').value||'2024-10-23';
+  x.fillStyle='#fffdf5'; x.fillRect(0,0,c.width,c.height);
+  x.strokeStyle='#0D7377'; x.lineWidth=12; x.strokeRect(10,10,c.width-20,c.height-20);
+  x.strokeStyle='#D4AF37'; x.lineWidth=4; x.strokeRect(25,25,c.width-50,c.height-50);
+  x.fillStyle='#8B6A00'; x.font='bold 20px Amiri'; x.textAlign='center'; x.fillText('شَهَادَةُ خَتْمِ عَشْرَةِ أَجْزَاءٍ مِنَ القُرْآنِ الكَرِيمِ', c.width/2, 90);
+  x.fillStyle='#B8941F'; x.font='900 48px Inter'; x.fillText('Sertifikat Khatam 10 Juz', c.width/2, 160);
+  x.fillStyle='#0D7377'; x.font='600 18px Inter'; x.fillText('Babussalam V12 Super App - Full 114 Surah', c.width/2, 195);
+  x.fillStyle='#333'; x.font='16px Inter'; x.fillText('Dengan ini menyatakan bahwa', c.width/2, 250);
+  x.fillStyle='#0D7377'; x.fillRect(c.width/2-300, 280, 600, 45); x.fillStyle='white'; x.font='bold 22px Inter'; x.fillText(nama.toUpperCase(), c.width/2, 310);
+  x.fillStyle='#333'; x.font='16px Inter'; x.fillText('Telah berhasil menyelesaikan hafalan 10 Juz Al-Qur\'an (Juz 21-30)', c.width/2, 360);
+  x.fillText('Sebagai bagian dari 114 Surah dalam Al-Qur\'an • Lulus evaluasi standar Babussalam', c.width/2, 385);
+  x.fillText('Semoga menjadi hafidz/hafidzah yang berakhlak mulia dan menjaga Al-Qur\'an', c.width/2, 410);
+  x.fillStyle='#666'; x.font='14px Inter'; x.textAlign='left'; x.fillText('Diberikan pada: '+tgl, 80, 500); x.fillText('No: BBS/V12/10JUZ-'+Math.floor(Math.random()*9000+1000), 80, 525);
+  x.textAlign='center'; x.fillText('Pembimbing', c.width/2+100, 500); x.fillText('Kepala Babussalam', c.width/2+350, 500);
+  x.fillRect(c.width/2+50, 580, 120, 1); x.fillRect(c.width/2+280, 580, 140, 1);
 }
-function sharePencapaian(){
-  if(navigator.share){navigator.share({title:'Khatam An-Naba 100%', text:'Alhamdulillah saya khatam Surah An-Naba 40 ayat di Babussalam V12', url:location.href});}
-  else{alert('Link disalin! Alhamdulillah 100% Khatam An-Naba');}
-}
-// auto confetti saat 100% - uncomment jika mau langsung:
-// window.onload=()=>setTimeout(triggerKhatamConfetti,800);
+function downloadCert(){const c=document.getElementById('certCanvas'); const a=document.createElement('a'); a.download='Sertifikat-10-Juz-'+(document.getElementById('namaSantri').value||'Santri')+'.png'; a.href=c.toDataURL(); a.click(); confettiKhatam();}
+function confettiKhatam(){const end=Date.now()+3000; (function f(){confetti({particleCount:10, angle:60, spread:70, origin:{x:0}, colors:['#D4AF37','#0D7377']}); confetti({particleCount:10, angle:120, spread:70, origin:{x:1}, colors:['#D4AF37','#0D7377']}); if(Date.now()<end) requestAnimationFrame(f);})();}
+const ctx=document.getElementById('chart').getContext('2d'); ctx.beginPath(); ctx.moveTo(10,100); for(let i=0;i<10;i++){ctx.lineTo(20+i*25, 110-(i*5+10));} ctx.strokeStyle='#0D7377'; ctx.lineWidth=2; ctx.stroke();
 </script>
 </body>
 </html>
