@@ -1,57 +1,115 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Babussalam V12 Lengkap Akurat - 114 Surah</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Babussalam V12 - Full 114 Surah - 10 Juz Edition - FINAL AKURAT</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>body{font-family:Inter}.arab{font-family:Amiri}</style>
 </head>
-<body class="bg-[#f0fdfa] font-sans">
-<!-- MODAL KHATAM AN-NABA (yang di foto Ustadz) -->
-<div id="modalKhatam" class="fixed inset-0 bg-black/50 flex items-end md:items-center justify-center z-50 p-0 md:p-4">
-<div class="bg-white w-full md:max-w-md rounded-t-[30px] md:rounded-[30px] p-6 border-[3px] border-yellow-400 text-center">
-<div class="text-3xl">🏆</div>
-<h1 class="text-2xl font-black mt-2">Alhamdulillah!<br>Khatam An-Naba Selesai</h1>
-<p class="text-sm text-gray-600 mt-3">Selamat! Kamu telah menyelesaikan 100% hafalan Surah An-Naba — 40 Ayat. Barakallahu Fiik ✨</p>
-<div class="bg-gradient-to-b from-yellow-400 to-yellow-600 rounded-[24px] p-6 mt-5 text-white font-black text-3xl leading-tight">100%<br>KHATAM AN-<br>NABA</div>
-<button onclick="navigator.share?navigator.share({title:'Khatam An-Naba',text:'Alhamdulillah 40 ayat selesai!'}):alert('Link disalin!')" class="w-full bg-gradient-to-r from-yellow-500 to-teal-600 text-white font-bold py-3 rounded-full mt-4">🔗 Bagikan Pencapaian</button>
-<button onclick="document.getElementById('modalKhatam').classList.add('hidden')" class="w-full border-2 border-teal-700 text-teal-800 font-bold py-3 rounded-full mt-3">Lanjut ke Surah Berikutnya</button>
-</div>
+<body class="bg-[#e8f5f3] pb-24">
+
+<div class="bg-teal-700 text-white p-3 flex justify-between items-center sticky top-0 z-40">
+  <div class="flex items-center gap-2"><span class="text-2xl">🌙</span><div><b>Babussalam V12 Full Quran FINAL AKURAT</b><br><small>114 Surah • 30 Juz • 6236 Ayat Akurat</small></div></div>
+  <span class="bg-yellow-600 px-3 py-1 rounded-full text-xs">Admin Santri ▼ 10 Juz</span>
 </div>
 
-<div class="max-w-5xl mx-auto p-3 grid md:grid-cols-3 gap-3 pb-24">
-<div class="bg-[#0e4d4b] text-white rounded-2xl p-4">
-<p class="text-[10px] opacity-60">Sedang Diputar:</p>
-<p class="font-bold text-sm">Juz 21-30 • 114 Surah Full Akurat</p>
-<div class="mt-6 bg-white/10 rounded-xl p-3 text-xs">
-<p>📊 114 Surah • Total 6236 Ayat</p>
-<p class="text-[10px] opacity-70 mt-1">✅ Al-Fatihah 7, Al-Baqarah 286, An-Naba 40, Al-Asr 3, An-Nas 6</p>
-</div>
-</div>
-<div class="md:col-span-2 bg-white rounded-2xl p-4 shadow">
-<h2 class="font-black text-sm">📖 Daftar 114 Surah Akurat</h2>
-<div id="list" class="mt-3 text-xs divide-y max-h-[500px] overflow-auto"></div>
-</div>
-<div class="md:col-span-3 bg-white rounded-2xl p-3 shadow">
-<p class="font-bold text-xs">Santri Progress</p>
-<div class="mt-2 space-y-2 text-sm">
-<div class="flex justify-between"><b>Siti Aisyah</b><span class="bg-yellow-100 px-2 rounded text-xs">9/12 Surah Khatam</span></div>
-<div class="flex justify-between"><b>Muhammad Rizki</b><span class="bg-yellow-100 px-2 rounded text-xs">7/12 Surah Khatam</span></div>
-<div class="flex justify-between"><b>Nurul Zahra</b><span class="bg-yellow-100 px-2 rounded text-xs">6/12 Surah Khatam</span></div>
-</div>
-</div>
+<div class="grid grid-cols-3 gap-3 p-4 max-w-7xl mx-auto">
+  <div class="bg-white rounded-xl p-3 text-center shadow"><h3 class="text-2xl font-black text-teal-700">10/30</h3><p class="text-xs">Juz Selesai</p><div class="h-2 bg-gray-200 rounded mt-1"><div class="h-2 bg-teal-600 rounded" style="width:33%"></div></div></div>
+  <div class="bg-white rounded-xl p-3 text-center shadow"><h3 class="text-2xl font-black text-yellow-600">82/114</h3><p class="text-xs">Surah Progress</p><div class="h-2 bg-gray-200 rounded mt-1"><div class="h-2 bg-yellow-500 rounded" style="width:71%"></div></div></div>
+  <div class="bg-white rounded-xl p-3 text-center shadow"><h3 class="text-2xl font-black">2,150</h3><p class="text-xs">Ayat Hafal</p><small class="text-teal-600">✅ Al-Fatihah 7, Baqarah 286</small></div>
 </div>
 
-<div class="fixed bottom-0 left-0 right-0 bg-[#0e2e2e] text-white p-3 flex justify-between items-center text-xs">
-<span>Surah An-Naba (Ayat 1-40) • Akurat 40 ayat</span>
-<span>18:02 / 18:02 — 1.0x</span>
+<div id="khatamBanner" class="mx-4 max-w-7xl md:mx-auto bg-gradient-to-r from-teal-700 to-teal-600 text-white p-4 flex justify-between items-center rounded-2xl shadow">
+  <div><h1 id="bannerTitle" class="text-lg font-bold">Alhamdulillah! 100% Khatam Surah An-Naba ✨ - 40 Ayat Akurat</h1><p id="bannerDesc" class="text-sm">Kamu telah menyelesaikan 40 Ayat Akurat. Lanjut An-Nazi'at 46 Ayat?</p></div>
+  <div id="bannerBadge" class="bg-yellow-500 text-white font-black px-4 py-2 rounded-2xl text-center">100%<br>AN-NABA</div>
+</div>
+
+<div class="grid md:grid-cols-3 gap-4 p-4 max-w-7xl mx-auto">
+  <div class="bg-white rounded-2xl p-4 shadow">
+    <h2 class="font-bold">📈 Grafik Hafalan Live (10 Juz)</h2><small>Juz 30 → Juz 21 - Data Akurat 6236 Ayat</small>
+    <canvas id="chartHafalan" height="160" class="my-3 border rounded"></canvas>
+    <div class="bg-yellow-50 p-3 rounded-xl text-sm">
+      <p><b>Target Harian:</b> 1 Halaman <span class="float-right">Selesai</span></p>
+      <div class="w-full bg-gray-200 h-2 rounded my-1"><div class="bg-yellow-500 h-2 w-full rounded"></div></div>
+      <p><b>Total:</b> 114 Surah = 6236 Ayat • Al-Fatihah 7, Baqarah 286, Al-Asr 3</p>
+    </div>
+  </div>
+
+  <div class="md:col-span-2 bg-white rounded-2xl p-4 shadow">
+    <div class="flex gap-2 mb-3 flex-wrap">
+      <select id="filterJuz" onchange="filterSurah()" class="border rounded-full px-3 py-1 text-sm"><option value="all">Semua Juz (1-30)</option><option value="30">Juz 30 - Juz Amma</option><option value="29">Juz 29 - Tabarak</option><option value="28">Juz 28</option><option value="10juz">10 Juz Terakhir (21-30)</option></select>
+      <button onclick="filterData('harian')" id="f-harian" class="px-3 py-1 rounded-full border text-sm">Harian</button>
+      <button onclick="filterData('mingguan')" id="f-mingguan" class="px-3 py-1 rounded-full bg-teal-600 text-white text-sm">Mingguan</button>
+      <input id="searchSurah" oninput="filterSurah()" placeholder="Cari 114 Surah Akurat..." class="border rounded-full px-3 py-1 text-sm flex-1">
+    </div>
+    <h3 class="font-bold mb-2">📖 Daftar 114 Surah - Akurat 6236 Ayat</h3>
+    <div id="listSurah" class="max-h-[400px] overflow-y-auto space-y-1 text-sm pr-2"></div>
+    
+    <h3 class="font-bold mt-6 mb-2">🏆 Leaderboard 10 Juz</h3>
+    <div id="listLeaderboard" class="space-y-2"></div>
+  </div>
+</div>
+
+<div class="fixed bottom-0 w-full bg-teal-800 text-white p-3 flex items-center gap-3 z-30">
+  <button onclick="triggerKhatamConfetti()" class="bg-yellow-500 rounded-full w-10 h-10 flex items-center justify-center">▶️</button>
+  <div class="text-sm"><small>Sedang Diputar:</small><br><b id="nowPlaying">Surah An-Naba (1-40) • Juz 30 • 40 Ayat Akurat</b></div>
+  <button class="ml-auto bg-yellow-600 px-3 py-1 rounded-full text-xs" onclick="sharePencapaian()">Bagikan 10 Juz</button>
+</div>
+
+<div id="khatamModal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+  <div class="bg-white rounded-3xl p-6 text-center max-w-sm border-4 border-yellow-400 w-full">
+    <div class="text-5xl mb-2">🏆</div><h2 id="modalTitle" class="text-xl font-black">Alhamdulillah!<br>Khatam An-Naba Selesai - 40 Ayat</h2>
+    <p id="modalDesc" class="my-2 text-sm">100% hafalan — 40 Ayat Akurat. Barakallahu Fiik ✨</p>
+    <div id="modalBadge" class="bg-gradient-to-br from-yellow-400 to-yellow-600 text-white font-black text-2xl p-4 rounded-2xl my-3">100%<br>KHATAM AN-NABA</div>
+    <button onclick="sharePencapaian()" class="w-full bg-gradient-to-r from-yellow-500 to-teal-600 text-white py-2 rounded-full font-bold mb-2">🔗 Bagikan Pencapaian</button>
+    <button onclick="nextSurah()" class="w-full border-2 border-teal-700 py-2 rounded-full text-sm">Lanjut ke Surah Berikutnya (114 Surah Akurat)</button>
+  </div>
 </div>
 
 <script>
-const data=[
-{n:1,name:"Al-Fatihah",ayat:7,juz:1},{n:2,name:"Al-Baqarah",ayat:286,juz:1},{n:3,name:"Ali 'Imran",ayat:200,juz:3},{n:4,name:"An-Nisa'",ayat:176,juz:4},{n:5,name:"Al-Ma'idah",ayat:120,juz:6},{n:6,name:"Al-An'am",ayat:165,juz:7},{n:7,name:"Al-A'raf",ayat:206,juz:8},{n:8,name:"Al-Anfal",ayat:75,juz:9},{n:9,name:"At-Taubah",ayat:129,juz:10},{n:10,name:"Yunus",ayat:109,juz:11},{n:11,name:"Hud",ayat:123,juz:11},{n:12,name:"Yusuf",ayat:111,juz:12},{n:13,name:"Ar-Ra'd",ayat:43,juz:13},{n:14,name:"Ibrahim",ayat:52,juz:13},{n:15,name:"Al-Hijr",ayat:99,juz:14},{n:16,name:"An-Nahl",ayat:128,juz:14},{n:17,name:"Al-Isra'",ayat:111,juz:15},{n:18,name:"Al-Kahf",ayat:110,juz:15},{n:19,name:"Maryam",ayat:98,juz:16},{n:20,name:"Ta-Ha",ayat:135,juz:16},{n:21,name:"Al-Anbiya'",ayat:112,juz:17},{n:22,name:"Al-Hajj",ayat:78,juz:17},{n:23,name:"Al-Mu'minun",ayat:118,juz:18},{n:24,name:"An-Nur",ayat:64,juz:18},{n:25,name:"Al-Furqan",ayat:77,juz:18},{n:26,name:"Asy-Syu'ara'",ayat:227,juz:19},{n:27,name:"An-Naml",ayat:93,juz:19},{n:28,name:"Al-Qasas",ayat:88,juz:20},{n:29,name:"Al-'Ankabut",ayat:69,juz:20},{n:30,name:"Ar-Rum",ayat:60,juz:21},{n:31,name:"Luqman",ayat:34,juz:21},{n:32,name:"As-Sajdah",ayat:30,juz:21},{n:33,name:"Al-Ahzab",ayat:73,juz:21},{n:34,name:"Saba'",ayat:54,juz:22},{n:35,name:"Fatir",ayat:45,juz:22},{n:36,name:"Ya-Sin",ayat:83,juz:22},{n:37,name:"As-Saffat",ayat:182,juz:23},{n:38,name:"Sad",ayat:88,juz:23},{n:39,name:"Az-Zumar",ayat:75,juz:23},{n:40,name:"Ghafir",ayat:85,juz:24},{n:41,name:"Fussilat",ayat:54,juz:24},{n:42,name:"Asy-Syura",ayat:53,juz:25},{n:43,name:"Az-Zukhruf",ayat:89,juz:25},{n:44,name:"Ad-Dukhan",ayat:59,juz:25},{n:45,name:"Al-Jasiyah",ayat:37,juz:25},{n:46,name:"Al-Ahqaf",ayat:35,juz:26},{n:47,name:"Muhammad",ayat:38,juz:26},{n:48,name:"Al-Fath",ayat:29,juz:26},{n:49,name:"Al-Hujurat",ayat:18,juz:26},{n:50,name:"Qaf",ayat:45,juz:26},{n:51,name:"Az-Zariyat",ayat:60,juz:26},{n:52,name:"At-Tur",ayat:49,juz:27},{n:53,name:"An-Najm",ayat:62,juz:27},{n:54,name:"Al-Qamar",ayat:55,juz:27},{n:55,name:"Ar-Rahman",ayat:78,juz:27},{n:56,name:"Al-Waqi'ah",ayat:96,juz:27},{n:57,name:"Al-Hadid",ayat:29,juz:27},{n:58,name:"Al-Mujadilah",ayat:22,juz:28},{n:59,name:"Al-Hasyr",ayat:24,juz:28},{n:60,name:"Al-Mumtahanah",ayat:13,juz:28},{n:61,name:"As-Saff",ayat:14,juz:28},{n:62,name:"Al-Jumu'ah",ayat:11,juz:28},{n:63,name:"Al-Munafiqun",ayat:11,juz:28},{n:64,name:"At-Tagabun",ayat:18,juz:28},{n:65,name:"At-Talaq",ayat:12,juz:28},{n:66,name:"At-Tahrim",ayat:12,juz:28},{n:67,name:"Al-Mulk",ayat:30,juz:29},{n:68,name:"Al-Qalam",ayat:52,juz:29},{n:69,name:"Al-Haqqah",ayat:52,juz:29},{n:70,name:"Al-Ma'arij",ayat:44,juz:29},{n:71,name:"Nuh",ayat:28,juz:29},{n:72,name:"Al-Jinn",ayat:28,juz:29},{n:73,name:"Al-Muzzammil",ayat:20,juz:29},{n:74,name:"Al-Muddassir",ayat:56,juz:29},{n:75,name:"Al-Qiyamah",ayat:40,juz:29},{n:76,name:"Al-Insan",ayat:31,juz:29},{n:77,name:"Al-Mursalat",ayat:50,juz:29},{n:78,name:"An-Naba'",ayat:40,juz:30},{n:79,name:"An-Nazi'at",ayat:46,juz:30},{n:80,name:"'Abasa",ayat:42,juz:30},{n:81,name:"At-Takwir",ayat:29,juz:30},{n:82,name:"Al-Infitar",ayat:19,juz:30},{n:83,name:"Al-Mutaffifin",ayat:36,juz:30},{n:84,name:"Al-Insyiqaq",ayat:25,juz:30},{n:85,name:"Al-Buruj",ayat:22,juz:30},{n:86,name:"At-Tariq",ayat:17,juz:30},{n:87,name:"Al-A'la",ayat:19,juz:30},{n:88,name:"Al-Ghasyiyah",ayat:26,juz:30},{n:89,name:"Al-Fajr",ayat:30,juz:30},{n:90,name:"Al-Balad",ayat:20,juz:30},{n:91,name:"Asy-Syams",ayat:15,juz:30},{n:92,name:"Al-Lail",ayat:21,juz:30},{n:93,name:"Ad-Duha",ayat:11,juz:30},{n:94,name:"Al-Insyirah",ayat:8,juz:30},{n:95,name:"At-Tin",ayat:8,juz:30},{n:96,name:"Al-'Alaq",ayat:19,juz:30},{n:97,name:"Al-Qadr",ayat:5,juz:30},{n:98,name:"Al-Bayyinah",ayat:8,juz:30},{n:99,name:"Az-Zalzalah",ayat:8,juz:30},{n:100,name:"Al-'Adiyat",ayat:11,juz:30},{n:101,name:"Al-Qari'ah",ayat:11,juz:30},{n:102,name:"At-Takasur",ayat:8,juz:30},{n:103,name:"Al-'Asr",ayat:3,juz:30},{n:104,name:"Al-Humazah",ayat:9,juz:30},{n:105,name:"Al-Fil",ayat:5,juz:30},{n:106,name:"Quraisy",ayat:4,juz:30},{n:107,name:"Al-Ma'un",ayat:7,juz:30},{n:108,name:"Al-Kausar",ayat:3,juz:30},{n:109,name:"Al-Kafirun",ayat:6,juz:30},{n:110,name:"An-Nasr",ayat:3,juz:30},{n:111,name:"Al-Lahab",ayat:5,juz:30},{n:112,name:"Al-Ikhlas",ayat:4,juz:30},{n:113,name:"Al-Falaq",ayat:5,juz:30},{n:114,name:"An-Nas",ayat:6,juz:30}
+// ✅ DATA 114 SURAH AKURAT - FIX 7, 286, 3 AYAT - TOTAL 6236
+const quran114=[
+{id:1,n:'Al-Fatihah',juz:1,ayat:7},{id:2,n:'Al-Baqarah',juz:1,ayat:286},{id:3,n:"Ali 'Imran",juz:3,ayat:200},{id:4,n:"An-Nisa'",juz:4,ayat:176},{id:5,n:"Al-Ma'idah",juz:6,ayat:120},{id:6,n:"Al-An'am",juz:7,ayat:165},{id:7,n:"Al-A'raf",juz:8,ayat:206},{id:8,n:"Al-Anfal",juz:9,ayat:75},{id:9,n:"At-Taubah",juz:10,ayat:129},{id:10,n:"Yunus",juz:11,ayat:109},{id:11,n:"Hud",juz:11,ayat:123},{id:12,n:"Yusuf",juz:12,ayat:111},{id:13,n:"Ar-Ra'd",juz:13,ayat:43},{id:14,n:"Ibrahim",juz:13,ayat:52},{id:15,n:"Al-Hijr",juz:14,ayat:99},{id:16,n:"An-Nahl",juz:14,ayat:128},{id:17,n:"Al-Isra'",juz:15,ayat:111},{id:18,n:"Al-Kahf",juz:15,ayat:110},{id:19,n:"Maryam",juz:16,ayat:98},{id:20,n:"Ta-Ha",juz:16,ayat:135},{id:21,n:"Al-Anbiya'",juz:17,ayat:112},{id:22,n:"Al-Hajj",juz:17,ayat:78},{id:23,n:"Al-Mu'minun",juz:18,ayat:118},{id:24,n:"An-Nur",juz:18,ayat:64},{id:25,n:"Al-Furqan",juz:18,ayat:77},{id:26,n:"Asy-Syu'ara'",juz:19,ayat:227},{id:27,n:"An-Naml",juz:19,ayat:93},{id:28,n:"Al-Qasas",juz:20,ayat:88},{id:29,n:"Al-'Ankabut",juz:20,ayat:69},{id:30,n:"Ar-Rum",juz:21,ayat:60},{id:31,n:"Luqman",juz:21,ayat:34},{id:32,n:"As-Sajdah",juz:21,ayat:30},{id:33,n:"Al-Ahzab",juz:21,ayat:73},{id:34,n:"Saba'",juz:22,ayat:54},{id:35,n:"Fatir",juz:22,ayat:45},{id:36,n:"Ya-Sin",juz:22,ayat:83},{id:37,n:"As-Saffat",juz:23,ayat:182},{id:38,n:"Sad",juz:23,ayat:88},{id:39,n:"Az-Zumar",juz:23,ayat:75},{id:40,n:"Ghafir",juz:24,ayat:85},{id:41,n:"Fussilat",juz:24,ayat:54},{id:42,n:"Asy-Syura",juz:25,ayat:53},{id:43,n:"Az-Zukhruf",juz:25,ayat:89},{id:44,n:"Ad-Dukhan",juz:25,ayat:59},{id:45,n:"Al-Jasiyah",juz:25,ayat:37},{id:46,n:"Al-Ahqaf",juz:26,ayat:35},{id:47,n:"Muhammad",juz:26,ayat:38},{id:48,n:"Al-Fath",juz:26,ayat:29},{id:49,n:"Al-Hujurat",juz:26,ayat:18},{id:50,n:"Qaf",juz:26,ayat:45},{id:51,n:"Az-Zariyat",juz:26,ayat:60},{id:52,n:"At-Tur",juz:27,ayat:49},{id:53,n:"An-Najm",juz:27,ayat:62},{id:54,n:"Al-Qamar",juz:27,ayat:55},{id:55,n:"Ar-Rahman",juz:27,ayat:78},{id:56,n:"Al-Waqi'ah",juz:27,ayat:96},{id:57,n:"Al-Hadid",juz:27,ayat:29},{id:58,n:"Al-Mujadilah",juz:28,ayat:22},{id:59,n:"Al-Hasyr",juz:28,ayat:24},{id:60,n:"Al-Mumtahanah",juz:28,ayat:13},{id:61,n:"As-Saff",juz:28,ayat:14},{id:62,n:"Al-Jumu'ah",juz:28,ayat:11},{id:63,n:"Al-Munafiqun",juz:28,ayat:11},{id:64,n:"At-Tagabun",juz:28,ayat:18},{id:65,n:"At-Talaq",juz:28,ayat:12},{id:66,n:"At-Tahrim",juz:28,ayat:12},{id:67,n:"Al-Mulk",juz:29,ayat:30},{id:68,n:"Al-Qalam",juz:29,ayat:52},{id:69,n:"Al-Haqqah",juz:29,ayat:52},{id:70,n:"Al-Ma'arij",juz:29,ayat:44},{id:71,n:"Nuh",juz:29,ayat:28},{id:72,n:"Al-Jinn",juz:29,ayat:28},{id:73,n:"Al-Muzzammil",juz:29,ayat:20},{id:74,n:"Al-Muddassir",juz:29,ayat:56},{id:75,n:"Al-Qiyamah",juz:29,ayat:40},{id:76,n:"Al-Insan",juz:29,ayat:31},{id:77,n:"Al-Mursalat",juz:29,ayat:50},{id:78,n:"An-Naba'",juz:30,ayat:40},{id:79,n:"An-Nazi'at",juz:30,ayat:46},{id:80,n:"'Abasa",juz:30,ayat:42},{id:81,n:"At-Takwir",juz:30,ayat:29},{id:82,n:"Al-Infitar",juz:30,ayat:19},{id:83,n:"Al-Mutaffifin",juz:30,ayat:36},{id:84,n:"Al-Insyiqaq",juz:30,ayat:25},{id:85,n:"Al-Buruj",juz:30,ayat:22},{id:86,n:"At-Tariq",juz:30,ayat:17},{id:87,n:"Al-A'la",juz:30,ayat:19},{id:88,n:"Al-Ghasyiyah",juz:30,ayat:26},{id:89,n:"Al-Fajr",juz:30,ayat:30},{id:90,n:"Al-Balad",juz:30,ayat:20},{id:91,n:"Asy-Syams",juz:30,ayat:15},{id:92,n:"Al-Lail",juz:30,ayat:21},{id:93,n:"Ad-Duha",juz:30,ayat:11},{id:94,n:"Al-Insyirah",juz:30,ayat:8},{id:95,n:"At-Tin",juz:30,ayat:8},{id:96,n:"Al-'Alaq",juz:30,ayat:19},{id:97,n:"Al-Qadr",juz:30,ayat:5},{id:98,n:"Al-Bayyinah",juz:30,ayat:8},{id:99,n:"Az-Zalzalah",juz:30,ayat:8},{id:100,n:"Al-'Adiyat",juz:30,ayat:11},{id:101,n:"Al-Qari'ah",juz:30,ayat:11},{id:102,n:"At-Takasur",juz:30,ayat:8},{id:103,n:"Al-'Asr",juz:30,ayat:3},{id:104,n:"Al-Humazah",juz:30,ayat:9},{id:105,n:"Al-Fil",juz:30,ayat:5},{id:106,n:"Quraisy",juz:30,ayat:4},{id:107,n:"Al-Ma'un",juz:30,ayat:7},{id:108,n:"Al-Kausar",juz:30,ayat:3},{id:109,n:"Al-Kafirun",juz:30,ayat:6},{id:110,n:"An-Nasr",juz:30,ayat:3},{id:111,n:"Al-Lahab",juz:30,ayat:5},{id:112,n:"Al-Ikhlas",juz:30,ayat:4},{id:113,n:"Al-Falaq",juz:30,ayat:5},{id:114,n:"An-Nas",juz:30,ayat:6}
 ];
-document.getElementById('list').innerHTML=data.map(s=>`<div class="flex justify-between py-2.5 px-2 hover:bg-teal-50 border-b"><span><b>${s.n}. ${s.name}</b> - Juz ${s.juz}</span><b class="text-teal-700">${s.ayat} ayat</b></div>`).join('');
+
+let currentSurah=quran114.find(s=>s.id==78);
+function renderSurahList(){
+  const container=document.getElementById('listSurah');
+  const juzF=document.getElementById('filterJuz').value;
+  const q=document.getElementById('searchSurah').value.toLowerCase();
+  container.innerHTML='';
+  quran114.filter(s=>{
+    if(juzF=='10juz') return s.juz>=21;
+    if(juzF!='all') return s.juz==parseInt(juzF);
+    return true;
+  }).filter(s=>s.n.toLowerCase().includes(q) || s.id.toString()==q).forEach(s=>{
+    const isDone=s.id<=78;
+    const pct=isDone?100:Math.floor(Math.random()*90);
+    container.innerHTML+=`<div class="flex justify-between items-center border-b py-2.5 ${isDone?'bg-yellow-50':''}"><div><b>${s.id}. ${s.n}</b> <small class="text-gray-600">Juz ${s.juz} • ${s.ayat} ayat</small></div><div class="flex gap-2 items-center"><div class="w-16 bg-gray-200 h-2 rounded"><div class="bg-${isDone?'yellow':'teal'}-500 h-2 rounded" style="width:${pct}%"></div></div><small>${pct}%</small><b class="text-teal-700 text-[10px]">${s.ayat} ayat</b>${isDone?'✅':''}</div></div>`;
+  });
+}
+renderSurahList();
+
+const data={mingguan:[{n:'Ahmad Fauzi (10 Juz)',p:12500,s:'200 hal',b:'10 Juz Khatam'},{n:'Siti Aisyah',p:9800,s:'160 hal',b:'8 Juz'},{n:'Muhammad Rizki',p:8200,s:'140 hal',b:'7 Juz'}]};
+function renderLeaderboard(){document.getElementById('listLeaderboard').innerHTML=data.mingguan.map((x,i)=>`<div class="flex justify-between border-b pb-2"><div><span>${i+1}. ${i==0?'🏆':''}</span> <b>${x.n}</b> <span class="text-xs bg-yellow-100 px-2 rounded">${x.b}</span></div><div class="text-right text-xs">${x.p} pts<br>🔥 ${x.s}</div></div>`).join('');}
+renderLeaderboard();
+
+const ctx=document.getElementById('chartHafalan').getContext('2d');
+ctx.beginPath(); ctx.moveTo(10,100); [30,29,28,27,26,25,24,23,22,21].forEach((j,i)=>{ctx.lineTo(20+i*22, 110-j);}); ctx.strokeStyle='#0d7377'; ctx.stroke();
+
+function triggerKhatamConfetti(){
+  document.getElementById('khatamModal').classList.remove('hidden');
+  const end=Date.now()+4000; (function frame(){confetti({particleCount:8, angle:60, spread:70, origin:{x:0}, colors:['#D4AF37','#0D7377']}); confetti({particleCount:8, angle:120, spread:70, origin:{x:1}, colors:['#D4AF37','#0D7377']}); if(Date.now()<end) requestAnimationFrame(frame);})();
+}
+function sharePencapaian(){if(navigator.share){navigator.share({title:'10 Juz Babussalam V12 - 114 Surah Akurat 6236 Ayat', text:'Alhamdulillah saya khatam An-Naba 40 ayat akurat di Babussalam', url:location.href});}else alert('Link 10 Juz Akurat disalin!');}
+function filterData(){renderLeaderboard();}
+function filterSurah(){renderSurahList();}
+function nextSurah(){
+  let idx=quran114.findIndex(s=>s.id==currentSurah.id);
+  if(idx<quran114.length-1){currentSurah=quran114[idx+1]; document.getElementById('nowPlaying').innerText=`Surah ${currentSurah.n} (${currentSurah.ayat} ayat) • Juz ${currentSurah.juz}`; document.getElementById('bannerTitle').innerText=`Lanjut: Surah ${currentSurah.n} - ${currentSurah.ayat} Ayat`; document.getElementById('bannerDesc').innerText=`${currentSurah.ayat} Ayat Akurat • Juz ${currentSurah.juz}`; document.getElementById('bannerBadge').innerHTML=`${currentSurah.ayat}<br>${currentSurah.n}`; document.getElementById('khatamModal').classList.add('hidden');}
+}
 </script>
 </body>
 </html>
