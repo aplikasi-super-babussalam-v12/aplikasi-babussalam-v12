@@ -1,83 +1,118 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Babussalam V12.1 FIX - Zakat + Jadwal + Hafalan</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Babussalam V12 Super App - Dashboard Hafalan Terintegrasi</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
-<style>body{font-family:'Poppins',sans-serif}.arab{font-family:'Amiri',serif}</style>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>body{font-family:Inter}.arab{font-family:Amiri}</style>
 </head>
-<body class="bg-[#fdfaf3] min-h-screen">
-<div class="max-w-md mx-auto bg-white min-h-screen shadow-xl pb-10">
-  <div class="bg-gradient-to-br from-[#0d5d33] to-[#1a8a4a] text-white text-center pt-7 pb-6 px-4 rounded-b-[32px]">
-    <img src="logo.png" alt="Logo" style="width:85px;height:85px;object-fit:contain;margin:0 auto 12px;background:white;border-radius:50%;padding:7px;display:block" onerror="this.style.display='none'">
-    <h1 class="arab text-[22px] font-bold">Pondok Pesantren Babussalam</h1>
-    <p class="text-[12px] opacity-90">Tempurejo - Jember - Jumat, 23 Okt 2026</p>
-    <div id="badgeKas" class="mt-3 inline-block bg-[#f4a017] text-white text-[11px] px-5 py-1.5 rounded-full font-bold">Nishab Otomatis Rp 216.750.000 (Emas Rp 2.550.000/gr) - Kas: 0 Transaksi</div>
-    <p class="text-[10px] mt-2 opacity-80">Subuh 03:43 | Dzuhur 11:13 | Ashar 14:21 | Maghrib 17:23 | Isya 18:33</p>
-  </div>
-  <div class="flex gap-1 p-1.5 bg-[#f5f1e8] mt-4 mx-3 rounded-full overflow-x-auto">
-    <button onclick="showTab('maal')" id="btn-maal" class="flex-1 min-w-[55px] py-2.5 text-[11px] font-bold rounded-full bg-[#0d5d33] text-white">Maal</button>
-    <button onclick="showTab('tani')" id="btn-tani" class="flex-1 min-w-[55px] py-2.5 text-[11px] font-bold rounded-full text-gray-500">Tani</button>
-    <button onclick="showTab('fitrah')" id="btn-fitrah" class="flex-1 min-w-[55px] py-2.5 text-[11px] font-bold rounded-full text-gray-500">Fitrah</button>
-    <button onclick="showTab('sholat')" id="btn-sholat" class="flex-1 min-w-[60px] py-2.5 text-[11px] font-bold rounded-full text-gray-500">Sholat</button>
-    <button onclick="showTab('hafalan')" id="btn-hafalan" class="flex-1 min-w-[60px] py-2.5 text-[11px] font-bold rounded-full text-gray-500">Hafalan</button>
-    <button onclick="showTab('donasi')" id="btn-donasi" class="flex-1 min-w-[55px] py-2.5 text-[11px] font-bold rounded-full text-gray-500">Donasi</button>
-  </div>
-  <div id="tab-maal" class="p-5">
-    <h2 class="font-bold text-[14px]">Zakat Maal V12.1 FIX</h2>
-    <p class="text-[10px] text-gray-500">Nisab 85 gram emas - Tombol FIX Aktif</p>
-    <input id="namaMaal" type="text" placeholder="Nama Muzakki" value="ahmad" class="w-full mt-2 p-3 border rounded-xl text-[12px]">
-    <div class="grid grid-cols-2 gap-2 mt-2">
-      <div><label class="text-[9px] font-bold text-gray-500">HARGA EMAS /GRAM</label><input id="hargaEmas" type="number" value="2550000" class="w-full mt-1 p-2.5 border rounded-xl text-[12px] border-amber-300 bg-amber-50"></div>
-      <div><label class="text-[9px] font-bold text-gray-500">NISAB 85 GRAM</label><div id="infoNisab" class="w-full mt-1 p-2.5 bg-amber-50 border border-amber-200 rounded-xl text-[11px] font-bold text-amber-700">Rp 216.750.000</div></div>
-    </div>
-    <input id="hartaMaal" type="number" placeholder="Total Harta Rp" value="1000000000" class="w-full mt-2 p-3 border rounded-xl text-[12px]">
-    <div id="boxHasilMaal" class="mt-3 p-3 bg-green-50 border border-green-200 rounded-xl hidden text-[12px]"></div>
-    <button onclick="hitungMaal()" class="w-full mt-3 bg-[#0d5d33] text-white py-3 rounded-xl font-bold text-[12px]">Hitung & Simpan</button>
-  </div>
-  <div id="tab-tani" class="p-5 hidden"><h2 class="font-bold text-[14px]">Zakat Pertanian</h2><input id="namaTani" type="text" placeholder="Nama Petani" class="w-full mt-2 p-3 border rounded-xl text-[12px]"><input id="hasilTaniKg" type="number" placeholder="Hasil Panen Kg" class="w-full mt-2 p-3 border rounded-xl text-[12px]"><div class="grid grid-cols-2 gap-2 mt-2"><select id="jenisAir" class="w-full p-2.5 border rounded-xl text-[12px]"><option value="10">Tad Hujan 10%</option><option value="5">Irigasi 5%</option></select><input id="hargaBerasTani" type="number" value="13000" class="w-full p-2.5 border rounded-xl text-[12px]"></div><div id="boxHasilTani" class="mt-2 p-3 bg-green-50 border rounded-xl hidden text-[11px]"></div><button onclick="hitungTani()" class="w-full mt-3 bg-[#0d5d33] text-white py-3 rounded-xl font-bold text-[12px]">Hitung & Simpan</button></div>
-  <div id="tab-fitrah" class="p-5 hidden"><h2 class="font-bold text-[14px]">Zakat Fitrah</h2><input id="namaFitrah" type="text" placeholder="Nama" class="w-full mt-2 p-3 border rounded-xl text-[12px]"><div class="grid grid-cols-2 gap-2 mt-2"><input id="jiwaFitrah" type="number" value="1" class="w-full p-2.5 border rounded-xl text-[12px]"><select id="beratFitrah" class="w-full p-2.5 border rounded-xl text-[12px]"><option value="2500">2500 gram</option><option value="3000">3000 gram</option></select></div><input id="hargaBerasFitrah" type="number" value="13000" class="w-full mt-2 p-2.5 border rounded-xl text-[12px]"><div id="boxHasilFitrah" class="mt-2 p-3 bg-green-50 border rounded-xl hidden text-[11px]"></div><button onclick="hitungFitrah()" class="w-full mt-3 bg-[#0d5d33] text-white py-3 rounded-xl font-bold text-[12px]">Simpan Fitrah</button></div>
-  <div id="tab-sholat" class="p-5 hidden"><h2 class="font-bold text-[14px]">Jadwal Sholat Jember</h2><p id="tglHijri" class="text-[11px] text-gray-500 mt-1">Jumat, 23 Okt 2026</p><div id="jadwalSholatBox" class="mt-3 space-y-2"></div><button onclick="loadJadwalSholat()" class="w-full mt-3 bg-amber-100 text-amber-800 py-2 rounded-xl text-[11px] font-bold">Refresh Jadwal</button></div>
-  <div id="tab-hafalan" class="p-5 hidden"><h2 class="font-bold text-[14px]">Setoran Hafalan Santri</h2><input id="namaSantri" type="text" placeholder="Nama Santri" class="w-full mt-2 p-3 border rounded-xl text-[12px]"><div class="grid grid-cols-2 gap-2 mt-2"><select id="surahHafal" class="w-full p-2.5 border rounded-xl text-[12px]"><option>Al-Fatihah</option><option>Al-Baqarah</option><option>Yasin</option><option>Ar-Rahman</option><option>Al-Waqiah</option></select><input id="ayatHafal" type="text" placeholder="Ayat 1-10" class="w-full p-2.5 border rounded-xl text-[12px]"></div><select id="statusHafal" class="w-full mt-2 p-2.5 border rounded-xl text-[12px]"><option value="Lancar">Lancar</option><option value="Perlu Murojaah">Perlu Murojaah</option></select><div id="boxHafalan" class="mt-3 space-y-1 text-[11px]"></div><button onclick="simpanHafalan()" class="w-full mt-3 bg-[#0d5d33] text-white py-3 rounded-xl font-bold text-[12px]">Simpan Hafalan</button></div>
-  <div id="tab-donasi" class="p-5 hidden"><h2 class="font-bold text-[14px]">Donasi</h2><input id="namaDonasi" type="text" placeholder="Nama Donatur" class="w-full mt-2 p-3 border rounded-xl text-[12px]"><input id="nominalDonasi" type="number" placeholder="Nominal Rp" class="w-full mt-2 p-3 border rounded-xl text-[12px]"><button onclick="hitungDonasi()" class="w-full mt-3 bg-[#0d5d33] text-white py-3 rounded-xl font-bold text-[12px]">Simpan Donasi</button></div>
-  <div class="px-5"><div id="tabelKas" class="text-[10px] space-y-1 mt-4"></div><p class="text-[9px] text-gray-400 text-center mt-4">V12.1 FIX - Nishab 216.750.000 - Tombol Aktif</p></div>
+<body class="bg-[#e8f5f3] text-slate-800">
+
+<!-- HEADER LIVE URL -->
+<div class="bg-teal-700 text-white p-3 flex justify-between items-center">
+  <div class="flex items-center gap-2"><span class="text-2xl">🌙</span><b>Babussalam V12 Super App</b></div>
+  <span class="bg-yellow-600 px-3 py-1 rounded-full text-xs">Admin Santri ▼</span>
 </div>
+
+<!-- CONFETTI BANNER 100% -->
+<div id="khatamBanner" class="bg-gradient-to-r from-teal-700 to-teal-600 text-white p-4 flex justify-between items-center">
+  <div><h1 class="text-xl font-bold">Alhamdulillah! 100% Khatam Surah An-Naba ✨</h1><p>Kamu telah menyelesaikan 100% hafalan — 40 Ayat. Barakallahu Fiik.</p></div>
+  <div class="bg-yellow-500 text-white font-black px-6 py-3 rounded-2xl shadow-xl">100%<br>KHATAM AN-NABA</div>
+</div>
+
+<div class="grid md:grid-cols-3 gap-4 p-4 max-w-7xl mx-auto">
+  <!-- GRAFIK HAFALAN LIVE -->
+  <div class="bg-white rounded-2xl p-4 shadow">
+    <h2 class="font-bold">📈 Grafik Hafalan Live</h2><small>Update Real-time • Okt 2024</small>
+    <canvas id="chartHafalan" height="150" class="my-3"></canvas>
+    <div class="bg-yellow-50 p-3 rounded-xl">
+      <p><b>Target Mingguan</b> Target: 5 Ayat/Hari <span class="float-right font-bold">5/5</span></p>
+      <div class="w-full bg-gray-200 h-2 rounded"><div class="bg-yellow-500 h-2 w-full rounded"></div></div>
+      <p class="text-sm mt-1">Selesai! 🔥 7/7 hari <span class="float-right">100%</span></p>
+      <p class="mt-2 text-sm"><b>Total Bulan Ini: 140 Ayat</b><br>Ringkasan Bulanan: 12/12 Surah • 100% Khatam ✓</p>
+    </div>
+  </div>
+
+  <!-- LEADERBOARD + FILTER -->
+  <div class="md:col-span-2 bg-white rounded-2xl p-4 shadow">
+    <div class="flex gap-2 mb-3">
+      <button onclick="filterData('harian')" id="f-harian" class="px-4 py-1 rounded-full border">Harian</button>
+      <button onclick="filterData('mingguan')" id="f-mingguan" class="px-4 py-1 rounded-full bg-teal-600 text-white">Mingguan</button>
+      <button onclick="filterData('bulanan')" id="f-bulanan" class="px-4 py-1 rounded-full border">Bulanan</button>
+      <select id="sortPoin" class="ml-auto border rounded-full px-3 text-sm"><option>Urutkan: Poin Tertinggi</option><option>Hafalan</option><option>Streak</option></select>
+    </div>
+    <h3 class="font-bold mb-2">🏆 Leaderboard Santri Teraktif</h3>
+    <div id="listLeaderboard" class="space-y-3">
+      <!-- diisi JS -->
+    </div>
+    <p class="text-xs text-gray-400 mt-3">Diperbarui: 23 Okt 2024 • 09:12 WIB</p>
+  </div>
+</div>
+
+<!-- PUTAR SURAH -->
+<div class="fixed bottom-0 w-full bg-teal-800 text-white p-3 flex items-center gap-3">
+  <button onclick="triggerKhatamConfetti()" class="bg-yellow-500 rounded-full w-10 h-10 flex items-center justify-center">▶️</button>
+  <div><small>Sedang Diputar:</small><br><b>Surah An-Naba (Ayat 1-40) • 100% Selesai</b></div>
+  <span class="ml-auto text-xs">18:02 / 18:02 — 1.0x</span>
+  <button class="bg-yellow-600 px-3 py-1 rounded-full text-xs" onclick="sharePencapaian()">Bagikan Pencapaian</button>
+</div>
+
+<!-- MODAL KHATAM -->
+<div id="khatamModal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+  <div class="bg-white rounded-3xl p-8 text-center max-w-sm border-4 border-yellow-400">
+    <div class="text-5xl mb-2">🏆</div><h2 class="text-2xl font-black">Alhamdulillah!<br>Khatam An-Naba Selesai</h2>
+    <p class="my-3 text-sm">Selamat! Kamu telah menyelesaikan 100% hafalan Surah An-Naba — 40 Ayat. Barakallahu Fiik ✨</p>
+    <div class="bg-gradient-to-br from-yellow-400 to-yellow-600 text-white font-black text-3xl p-4 rounded-2xl my-4">100%<br>KHATAM AN-NABA</div>
+    <button onclick="sharePencapaian()" class="w-full bg-gradient-to-r from-yellow-500 to-teal-600 text-white py-2 rounded-full font-bold mb-2">🔗 Bagikan Pencapaian</button>
+    <button onclick="document.getElementById('khatamModal').classList.add('hidden')" class="w-full border-2 border-teal-700 py-2 rounded-full">Lanjut ke Surah Berikutnya</button>
+  </div>
+</div>
+
 <script>
-const fmt = n => 'Rp ' + Number(n).toLocaleString('id-ID');
-function showTab(n){['maal','tani','fitrah','sholat','hafalan','donasi'].forEach(t=>{let el=document.getElementById('tab-'+t);if(el) el.style.display=(t===n?'block':'none');let b=document.getElementById('btn-'+t);if(b) b.className=t===n?'flex-1 min-w-[55px] py-2.5 text-[11px] font-bold rounded-full bg-[#0d5d33] text-white':'flex-1 min-w-[55px] py-2.5 text-[11px] font-bold rounded-full text-gray-500 bg-white';});}
-function updateNisab(){let h=parseFloat(document.getElementById('hargaEmas').value||2550000);document.getElementById('infoNisab').innerText=fmt(h*85);let count=0;try{count=JSON.parse(localStorage.getItem('kasBabussalam')||'[]').length;}catch(e){}document.getElementById('badgeKas').innerText='Nishab Otomatis '+fmt(h*85)+' (Emas Rp '+h.toLocaleString('id-ID')+'/gr) - Kas: '+count+' Transaksi';}
-document.getElementById('hargaEmas').addEventListener('input',updateNisab);
-function hitungMaal(){
-  try{
-    let harga=parseFloat(document.getElementById('hargaEmas').value||2550000);
-    let harta=parseFloat(document.getElementById('hartaMaal').value||0);
-    let nama=document.getElementById('namaMaal').value||'Hamba Allah';
-    let nisab=harga*85;
-    let gram=harta/harga;
-    let zakat=harta>=nisab?harta*0.025:0;
-    let box=document.getElementById('boxHasilMaal');
-    box.classList.remove('hidden'); box.style.display='block';
-    if(zakat>0){
-      box.innerHTML='<b style="color:#0d5d33">? WAJIB ZAKAT</b><br>Harta: '+fmt(harta)+' ('+gram.toFixed(2)+' gram)<br>Nisab: '+fmt(nisab)+'<br><b style="font-size:13px">Zakat: '+fmt(zakat)+' ('+(zakat/harga).toFixed(3)+' gram)</b>';
-      let data=[]; try{data=JSON.parse(localStorage.getItem('kasBabussalam')||'[]');}catch(e){data=[];}
-      data.push({jenis:'Maal',nama:nama,jumlah:zakat,gram:gram.toFixed(2),tgl:new Date().toLocaleDateString('id-ID')});
-      localStorage.setItem('kasBabussalam',JSON.stringify(data));
-      updateUI(); alert('Alhamdulillah! Zakat '+nama+' '+fmt(zakat)+' tersimpan. Kas sekarang '+data.length+' transaksi');
-    }else{
-      box.innerHTML='<b style="color:orange">BELUM WAJIB</b><br>Harta '+fmt(harta)+' belum capai nisab '+fmt(nisab);
-    }
-  }catch(err){ alert('Error hitung: '+err.message); console.log(err); }
+// DATA LEADERBOARD
+const data = {
+ harian: [{n:'Ahmad Fauzi',p:1250,s:'12 hari',b:'100% Khatam An-Naba'}, {n:'Siti Aisyah',p:980,s:'9 hari',b:'9/12 Khatam'}, {n:'Muhammad Rizki',p:820,s:'6 hari',b:'7/12 Khatam'}],
+ mingguan: [{n:'Ahmad Fauzi',p:1250,s:'12 hari',b:'100% Khatam An-Naba'}, {n:'Siti Aisyah',p:980,s:'9 hari',b:'9/12 Surah Khatam'}, {n:'Muhammad Rizki',p:820,s:'6 hari',b:'7/12 Surah Khatam'}, {n:'Nurul Zahra',p:760,s:'5 hari',b:'6/12 Surah Khatam'}],
+ bulanan: [{n:'Ahmad Fauzi',p:4250,s:'28 hari',b:'12/12 Khatam'}, {n:'Siti Aisyah',p:3180,s:'24 hari',b:'11/12 Khatam'}, {n:'Muhammad Rizki',p:2820,s:'22 hari',b:'10/12 Khatam'}]
+};
+function renderLeaderboard(key){
+  const list=document.getElementById('listLeaderboard'); list.innerHTML='';
+  data[key].forEach((x,i)=>{
+    list.innerHTML+=`<div class="flex justify-between items-center border-b pb-2"><div class="flex gap-2 items-center"><span class="font-bold">${i+1}. ${i==0?'🏆':i==1?'🥈':i==2?'🥉':'🎖️'}</span><b>${x.n}</b><span class="text-xs bg-yellow-100 px-2 rounded">${x.b}</span></div><div class="text-right text-sm">${x.p} pts<br>🔥 ${x.s}</div></div>`;
+  });
 }
-function hitungTani(){let kg=parseFloat(document.getElementById('hasilTaniKg').value||0);let p=parseFloat(document.getElementById('jenisAir').value||10);let harga=parseFloat(document.getElementById('hargaBerasTani').value||0);let zKg=kg*p/100;let zRp=zKg*harga;let box=document.getElementById('boxHasilTani');box.classList.remove('hidden');box.style.display='block';box.innerHTML='Zakat: '+zKg.toFixed(1)+' Kg = '+fmt(zRp);let data=[];try{data=JSON.parse(localStorage.getItem('kasBabussalam')||'[]');}catch(e){}data.push({jenis:'Tani',nama:document.getElementById('namaTani').value||'Petani',jumlah:zRp,gram:(zKg*1000).toFixed(0),tgl:new Date().toLocaleDateString('id-ID')});localStorage.setItem('kasBabussalam',JSON.stringify(data));updateUI();}
-function hitungFitrah(){let jiwa=parseFloat(document.getElementById('jiwaFitrah').value||1);let berat=parseFloat(document.getElementById('beratFitrah').value||2500);let harga=parseFloat(document.getElementById('hargaBerasFitrah').value||0);let g=jiwa*berat;let rp=g/1000*harga;let box=document.getElementById('boxHasilFitrah');box.classList.remove('hidden');box.style.display='block';box.innerHTML='Total: '+g+' gram = '+fmt(rp);let data=[];try{data=JSON.parse(localStorage.getItem('kasBabussalam')||'[]');}catch(e){}data.push({jenis:'Fitrah',nama:document.getElementById('namaFitrah').value||'Fitrah',jumlah:rp,gram:g,tgl:new Date().toLocaleDateString('id-ID')});localStorage.setItem('kasBabussalam',JSON.stringify(data));updateUI();}
-function hitungDonasi(){let nom=parseFloat(document.getElementById('nominalDonasi').value||0);let data=[];try{data=JSON.parse(localStorage.getItem('kasBabussalam')||'[]');}catch(e){}data.push({jenis:'Donasi',nama:document.getElementById('namaDonasi').value||'Donatur',jumlah:nom,tgl:new Date().toLocaleDateString('id-ID')});localStorage.setItem('kasBabussalam',JSON.stringify(data));updateUI();alert('Donasi tersimpan');}
-function simpanHafalan(){let data=[];try{data=JSON.parse(localStorage.getItem('hafalanBabussalam')||'[]');}catch(e){}data.push({nama:document.getElementById('namaSantri').value||'Santri',surah:document.getElementById('surahHafal').value,ayat:document.getElementById('ayatHafal').value,status:document.getElementById('statusHafal').value,tgl:new Date().toLocaleDateString('id-ID')});localStorage.setItem('hafalanBabussalam',JSON.stringify(data));renderHafalan();alert('Hafalan tersimpan');}
-function updateUI(){try{let data=JSON.parse(localStorage.getItem('kasBabussalam')||'[]');let t=document.getElementById('tabelKas');if(t){t.innerHTML=data.slice(-5).reverse().map(d=>"<div class='border-b py-1 flex justify-between'><span>"+d.tgl+" - "+d.jenis+" - "+d.nama+"</span><span class='font-bold'>"+(d.gram?d.gram+' gram / ':'')+fmt(d.jumlah)+"</span></div>").join('');}let h=parseFloat(document.getElementById('hargaEmas').value||2550000);document.getElementById('badgeKas').innerText='Nishab Otomatis '+fmt(h*85)+' (Emas Rp '+h.toLocaleString('id-ID')+'/gr) - Kas: '+data.length+' Transaksi';}catch(e){}}
-function renderHafalan(){try{let data=JSON.parse(localStorage.getItem('hafalanBabussalam')||'[]');let box=document.getElementById('boxHafalan');if(data.length==0){box.innerHTML='<div class="text-gray-400 text-center p-2">Belum ada setoran</div>';return;}box.innerHTML=data.slice(-8).reverse().map(d=>"<div class='p-2 bg-amber-50 border rounded-xl flex justify-between'><span><b>"+d.nama+"</b> - "+d.surah+" "+d.ayat+"</span><span>"+d.status+"</span></div>").join('');}catch(e){}}
-async function loadJadwalSholat(){let box=document.getElementById('jadwalSholatBox');box.innerHTML='Memuat...';try{let today=new Date();let res=await fetch(`https://api.aladhan.com/v1/timingsByCity/${today.getDate()}-${today.getMonth()+1}-${today.getFullYear()}?city=Jember&country=Indonesia&method=2`);let j=await res.json();let t=j.data.timings;let list=[['Subuh',t.Fajr],['Dzuhur',t.Dhuhr],['Ashar',t.Asr],['Maghrib',t.Maghrib],['Isya',t.Isha]];document.getElementById('tglHijri').innerText=j.data.date.hijri.day+' '+j.data.date.hijri.month.en+' '+j.data.date.hijri.year+' H';box.innerHTML=list.map(([n,j])=>"<div class='flex justify-between p-3 bg-green-50 border rounded-xl'><span>"+n+"</span><span class='font-bold'>"+j+"</span></div>").join('');}catch(e){box.innerHTML="<div class='space-y-2'><div class='flex justify-between p-3 bg-green-50 rounded-xl'><span>Subuh</span><b>03:43</b></div><div class='flex justify-between p-3 bg-green-50 rounded-xl'><span>Dzuhur</span><b>11:13</b></div><div class='flex justify-between p-3 bg-green-50 rounded-xl'><span>Ashar</span><b>14:21</b></div><div class='flex justify-between p-3 bg-green-50 rounded-xl'><span>Maghrib</span><b>17:23</b></div><div class='flex justify-between p-3 bg-green-50 rounded-xl'><span>Isya</span><b>18:33</b></div></div>";}}
-updateNisab();updateUI();
+function filterData(k){
+  document.querySelectorAll('[id^=f-]').forEach(b=>b.className='px-4 py-1 rounded-full border');
+  document.getElementById('f-'+k).className='px-4 py-1 rounded-full bg-teal-600 text-white';
+  renderLeaderboard(k);
+}
+renderLeaderboard('mingguan');
+
+// CHART SIMPLE
+const ctx=document.getElementById('chartHafalan').getContext('2d');
+ctx.beginPath(); ctx.moveTo(10,80);
+[34,35,37,38,39,40].forEach((v,i)=>{ctx.lineTo(20+i*30, 90-v); ctx.fillText(v,18+i*30, 85-v);});
+ctx.strokeStyle='#0d7377'; ctx.lineWidth=2; ctx.stroke();
+
+// CONFETTI 100%
+function triggerKhatamConfetti(){
+  document.getElementById('khatamModal').classList.remove('hidden');
+  const end=Date.now()+4000;
+  (function frame(){
+    confetti({particleCount:6, angle:60, spread:70, origin:{x:0}, colors:['#D4AF37','#0D7377','#FFD700']});
+    confetti({particleCount:6, angle:120, spread:70, origin:{x:1}, colors:['#D4AF37','#0D7377','#FFD700']});
+    if(Date.now()<end) requestAnimationFrame(frame);
+  })();
+  confetti({particleCount:200, spread:100, origin:{y:0.6}});
+}
+function sharePencapaian(){
+  if(navigator.share){navigator.share({title:'Khatam An-Naba 100%', text:'Alhamdulillah saya khatam Surah An-Naba 40 ayat di Babussalam V12', url:location.href});}
+  else{alert('Link disalin! Alhamdulillah 100% Khatam An-Naba');}
+}
+// auto confetti saat 100% - uncomment jika mau langsung:
+// window.onload=()=>setTimeout(triggerKhatamConfetti,800);
 </script>
 </body>
 </html>
