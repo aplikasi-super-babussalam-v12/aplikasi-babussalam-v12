@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Babussalam V12.1 FIX - Zakat + Jadwal + Hafalan</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
+<style>body{font-family:'Poppins',sans-serif}.arab{font-family:'Amiri',serif}</style>
+</head>
+<body class="bg-[#fdfaf3] min-h-screen">
+<div class="max-w-md mx-auto bg-white min-h-screen shadow-xl pb-10">
+  <div class="bg-gradient-to-br from-[#0d5d33] to-[#1a8a4a] text-white text-center pt-7 pb-6 px-4 rounded-b-[32px]">
+    <img src="logo.png" alt="Logo" style="width:85px;height:85px;object-fit:contain;margin:0 auto 12px;background:white;border-radius:50%;padding:7px;display:block" onerror="this.style.display='none'">
+    <h1 class="arab text-[22px] font-bold">Pondok Pesantren Babussalam</h1>
+    <p class="text-[12px] opacity-90">Tempurejo - Jember - Jumat, 23 Okt 2026</p>
+    <div id="badgeKas" class="mt-3 inline-block bg-[#f4a017] text-white text-[11px] px-5 py-1.5 rounded-full font-bold">Nishab Otomatis Rp 216.750.000 (Emas Rp 2.550.000/gr) - Kas: 0 Transaksi</div>
+    <p class="text-[10px] mt-2 opacity-80">Subuh 03:43 | Dzuhur 11:13 | Ashar 14:21 | Maghrib 17:23 | Isya 18:33</p>
+  </div>
+  <div class="flex gap-1 p-1.5 bg-[#f5f1e8] mt-4 mx-3 rounded-full overflow-x-auto">
+    <button onclick="showTab('maal')" id="btn-maal" class="flex-1 min-w-[55px] py-2.5 text-[11px] font-bold rounded-full bg-[#0d5d33] text-white">Maal</button>
+    <button onclick="showTab('tani')" id="btn-tani" class="flex-1 min-w-[55px] py-2.5 text-[11px] font-bold rounded-full text-gray-500">Tani</button>
+    <button onclick="showTab('fitrah')" id="btn-fitrah" class="flex-1 min-w-[55px] py-2.5 text-[11px] font-bold rounded-full text-gray-500">Fitrah</button>
+    <button onclick="showTab('sholat')" id="btn-sholat" class="flex-1 min-w-[60px] py-2.5 text-[11px] font-bold rounded-full text-gray-500">Sholat</button>
+    <button onclick="showTab('hafalan')" id="btn-hafalan" class="flex-1 min-w-[60px] py-2.5 text-[11px] font-bold rounded-full text-gray-500">Hafalan</button>
+    <button onclick="showTab('donasi')" id="btn-donasi" class="flex-1 min-w-[55px] py-2.5 text-[11px] font-bold rounded-full text-gray-500">Donasi</button>
+  </div>
+  <div id="tab-maal" class="p-5">
+    <h2 class="font-bold text-[14px]">Zakat Maal V12.1 FIX</h2>
+    <p class="text-[10px] text-gray-500">Nisab 85 gram emas - Tombol FIX Aktif</p>
+    <input id="namaMaal" type="text" placeholder="Nama Muzakki" value="ahmad" class="w-full mt-2 p-3 border rounded-xl text-[12px]">
+    <div class="grid grid-cols-2 gap-2 mt-2">
+      <div><label class="text-[9px] font-bold text-gray-500">HARGA EMAS /GRAM</label><input id="hargaEmas" type="number" value="2550000" class="w-full mt-1 p-2.5 border rounded-xl text-[12px] border-amber-300 bg-amber-50"></div>
+      <div><label class="text-[9px] font-bold text-gray-500">NISAB 85 GRAM</label><div id="infoNisab" class="w-full mt-1 p-2.5 bg-amber-50 border border-amber-200 rounded-xl text-[11px] font-bold text-amber-700">Rp 216.750.000</div></div>
+    </div>
+    <input id="hartaMaal" type="number" placeholder="Total Harta Rp" value="1000000000" class="w-full mt-2 p-3 border rounded-xl text-[12px]">
+    <div id="boxHasilMaal" class="mt-3 p-3 bg-green-50 border border-green-200 rounded-xl hidden text-[12px]"></div>
+    <button onclick="hitungMaal()" class="w-full mt-3 bg-[#0d5d33] text-white py-3 rounded-xl font-bold text-[12px]">Hitung & Simpan</button>
+  </div>
+  <div id="tab-tani" class="p-5 hidden"><h2 class="font-bold text-[14px]">Zakat Pertanian</h2><input id="namaTani" type="text" placeholder="Nama Petani" class="w-full mt-2 p-3 border rounded-xl text-[12px]"><input id="hasilTaniKg" type="number" placeholder="Hasil Panen Kg" class="w-full mt-2 p-3 border rounded-xl text-[12px]"><div class="grid grid-cols-2 gap-2 mt-2"><select id="jenisAir" class="w-full p-2.5 border rounded-xl text-[12px]"><option value="10">Tad Hujan 10%</option><option value="5">Irigasi 5%</option></select><input id="hargaBerasTani" type="number" value="13000" class="w-full p-2.5 border rounded-xl text-[12px]"></div><div id="boxHasilTani" class="mt-2 p-3 bg-green-50 border rounded-xl hidden text-[11px]"></div><button onclick="hitungTani()" class="w-full mt-3 bg-[#0d5d33] text-white py-3 rounded-xl font-bold text-[12px]">Hitung & Simpan</button></div>
+  <div id="tab-fitrah" class="p-5 hidden"><h2 class="font-bold text-[14px]">Zakat Fitrah</h2><input id="namaFitrah" type="text" placeholder="Nama" class="w-full mt-2 p-3 border rounded-xl text-[12px]"><div class="grid grid-cols-2 gap-2 mt-2"><input id="jiwaFitrah" type="number" value="1" class="w-full p-2.5 border rounded-xl text-[12px]"><select id="beratFitrah" class="w-full p-2.5 border rounded-xl text-[12px]"><option value="2500">2500 gram</option><option value="3000">3000 gram</option></select></div><input id="hargaBerasFitrah" type="number" value="13000" class="w-full mt-2 p-2.5 border rounded-xl text-[12px]"><div id="boxHasilFitrah" class="mt-2 p-3 bg-green-50 border rounded-xl hidden text-[11px]"></div><button onclick="hitungFitrah()" class="w-full mt-3 bg-[#0d5d33] text-white py-3 rounded-xl font-bold text-[12px]">Simpan Fitrah</button></div>
+  <div id="tab-sholat" class="p-5 hidden"><h2 class="font-bold text-[14px]">Jadwal Sholat Jember</h2><p id="tglHijri" class="text-[11px] text-gray-500 mt-1">Jumat, 23 Okt 2026</p><div id="jadwalSholatBox" class="mt-3 space-y-2"></div><button onclick="loadJadwalSholat()" class="w-full mt-3 bg-amber-100 text-amber-800 py-2 rounded-xl text-[11px] font-bold">Refresh Jadwal</button></div>
+  <div id="tab-hafalan" class="p-5 hidden"><h2 class="font-bold text-[14px]">Setoran Hafalan Santri</h2><input id="namaSantri" type="text" placeholder="Nama Santri" class="w-full mt-2 p-3 border rounded-xl text-[12px]"><div class="grid grid-cols-2 gap-2 mt-2"><select id="surahHafal" class="w-full p-2.5 border rounded-xl text-[12px]"><option>Al-Fatihah</option><option>Al-Baqarah</option><option>Yasin</option><option>Ar-Rahman</option><option>Al-Waqiah</option></select><input id="ayatHafal" type="text" placeholder="Ayat 1-10" class="w-full p-2.5 border rounded-xl text-[12px]"></div><select id="statusHafal" class="w-full mt-2 p-2.5 border rounded-xl text-[12px]"><option value="Lancar">Lancar</option><option value="Perlu Murojaah">Perlu Murojaah</option></select><div id="boxHafalan" class="mt-3 space-y-1 text-[11px]"></div><button onclick="simpanHafalan()" class="w-full mt-3 bg-[#0d5d33] text-white py-3 rounded-xl font-bold text-[12px]">Simpan Hafalan</button></div>
+  <div id="tab-donasi" class="p-5 hidden"><h2 class="font-bold text-[14px]">Donasi</h2><input id="namaDonasi" type="text" placeholder="Nama Donatur" class="w-full mt-2 p-3 border rounded-xl text-[12px]"><input id="nominalDonasi" type="number" placeholder="Nominal Rp" class="w-full mt-2 p-3 border rounded-xl text-[12px]"><button onclick="hitungDonasi()" class="w-full mt-3 bg-[#0d5d33] text-white py-3 rounded-xl font-bold text-[12px]">Simpan Donasi</button></div>
+  <div class="px-5"><div id="tabelKas" class="text-[10px] space-y-1 mt-4"></div><p class="text-[9px] text-gray-400 text-center mt-4">V12.1 FIX - Nishab 216.750.000 - Tombol Aktif</p></div>
+</div>
+<script>
+const fmt = n => 'Rp ' + Number(n).toLocaleString('id-ID');
+function showTab(n){['maal','tani','fitrah','sholat','hafalan','donasi'].forEach(t=>{let el=document.getElementById('tab-'+t);if(el) el.style.display=(t===n?'block':'none');let b=document.getElementById('btn-'+t);if(b) b.className=t===n?'flex-1 min-w-[55px] py-2.5 text-[11px] font-bold rounded-full bg-[#0d5d33] text-white':'flex-1 min-w-[55px] py-2.5 text-[11px] font-bold rounded-full text-gray-500 bg-white';});}
+function updateNisab(){let h=parseFloat(document.getElementById('hargaEmas').value||2550000);document.getElementById('infoNisab').innerText=fmt(h*85);let count=0;try{count=JSON.parse(localStorage.getItem('kasBabussalam')||'[]').length;}catch(e){}document.getElementById('badgeKas').innerText='Nishab Otomatis '+fmt(h*85)+' (Emas Rp '+h.toLocaleString('id-ID')+'/gr) - Kas: '+count+' Transaksi';}
+document.getElementById('hargaEmas').addEventListener('input',updateNisab);
+function hitungMaal(){
+  try{
+    let harga=parseFloat(document.getElementById('hargaEmas').value||2550000);
+    let harta=parseFloat(document.getElementById('hartaMaal').value||0);
+    let nama=document.getElementById('namaMaal').value||'Hamba Allah';
+    let nisab=harga*85;
+    let gram=harta/harga;
+    let zakat=harta>=nisab?harta*0.025:0;
+    let box=document.getElementById('boxHasilMaal');
+    box.classList.remove('hidden'); box.style.display='block';
+    if(zakat>0){
+      box.innerHTML='<b style="color:#0d5d33">? WAJIB ZAKAT</b><br>Harta: '+fmt(harta)+' ('+gram.toFixed(2)+' gram)<br>Nisab: '+fmt(nisab)+'<br><b style="font-size:13px">Zakat: '+fmt(zakat)+' ('+(zakat/harga).toFixed(3)+' gram)</b>';
+      let data=[]; try{data=JSON.parse(localStorage.getItem('kasBabussalam')||'[]');}catch(e){data=[];}
+      data.push({jenis:'Maal',nama:nama,jumlah:zakat,gram:gram.toFixed(2),tgl:new Date().toLocaleDateString('id-ID')});
+      localStorage.setItem('kasBabussalam',JSON.stringify(data));
+      updateUI(); alert('Alhamdulillah! Zakat '+nama+' '+fmt(zakat)+' tersimpan. Kas sekarang '+data.length+' transaksi');
+    }else{
+      box.innerHTML='<b style="color:orange">BELUM WAJIB</b><br>Harta '+fmt(harta)+' belum capai nisab '+fmt(nisab);
+    }
+  }catch(err){ alert('Error hitung: '+err.message); console.log(err); }
+}
+function hitungTani(){let kg=parseFloat(document.getElementById('hasilTaniKg').value||0);let p=parseFloat(document.getElementById('jenisAir').value||10);let harga=parseFloat(document.getElementById('hargaBerasTani').value||0);let zKg=kg*p/100;let zRp=zKg*harga;let box=document.getElementById('boxHasilTani');box.classList.remove('hidden');box.style.display='block';box.innerHTML='Zakat: '+zKg.toFixed(1)+' Kg = '+fmt(zRp);let data=[];try{data=JSON.parse(localStorage.getItem('kasBabussalam')||'[]');}catch(e){}data.push({jenis:'Tani',nama:document.getElementById('namaTani').value||'Petani',jumlah:zRp,gram:(zKg*1000).toFixed(0),tgl:new Date().toLocaleDateString('id-ID')});localStorage.setItem('kasBabussalam',JSON.stringify(data));updateUI();}
+function hitungFitrah(){let jiwa=parseFloat(document.getElementById('jiwaFitrah').value||1);let berat=parseFloat(document.getElementById('beratFitrah').value||2500);let harga=parseFloat(document.getElementById('hargaBerasFitrah').value||0);let g=jiwa*berat;let rp=g/1000*harga;let box=document.getElementById('boxHasilFitrah');box.classList.remove('hidden');box.style.display='block';box.innerHTML='Total: '+g+' gram = '+fmt(rp);let data=[];try{data=JSON.parse(localStorage.getItem('kasBabussalam')||'[]');}catch(e){}data.push({jenis:'Fitrah',nama:document.getElementById('namaFitrah').value||'Fitrah',jumlah:rp,gram:g,tgl:new Date().toLocaleDateString('id-ID')});localStorage.setItem('kasBabussalam',JSON.stringify(data));updateUI();}
+function hitungDonasi(){let nom=parseFloat(document.getElementById('nominalDonasi').value||0);let data=[];try{data=JSON.parse(localStorage.getItem('kasBabussalam')||'[]');}catch(e){}data.push({jenis:'Donasi',nama:document.getElementById('namaDonasi').value||'Donatur',jumlah:nom,tgl:new Date().toLocaleDateString('id-ID')});localStorage.setItem('kasBabussalam',JSON.stringify(data));updateUI();alert('Donasi tersimpan');}
+function simpanHafalan(){let data=[];try{data=JSON.parse(localStorage.getItem('hafalanBabussalam')||'[]');}catch(e){}data.push({nama:document.getElementById('namaSantri').value||'Santri',surah:document.getElementById('surahHafal').value,ayat:document.getElementById('ayatHafal').value,status:document.getElementById('statusHafal').value,tgl:new Date().toLocaleDateString('id-ID')});localStorage.setItem('hafalanBabussalam',JSON.stringify(data));renderHafalan();alert('Hafalan tersimpan');}
+function updateUI(){try{let data=JSON.parse(localStorage.getItem('kasBabussalam')||'[]');let t=document.getElementById('tabelKas');if(t){t.innerHTML=data.slice(-5).reverse().map(d=>"<div class='border-b py-1 flex justify-between'><span>"+d.tgl+" - "+d.jenis+" - "+d.nama+"</span><span class='font-bold'>"+(d.gram?d.gram+' gram / ':'')+fmt(d.jumlah)+"</span></div>").join('');}let h=parseFloat(document.getElementById('hargaEmas').value||2550000);document.getElementById('badgeKas').innerText='Nishab Otomatis '+fmt(h*85)+' (Emas Rp '+h.toLocaleString('id-ID')+'/gr) - Kas: '+data.length+' Transaksi';}catch(e){}}
+function renderHafalan(){try{let data=JSON.parse(localStorage.getItem('hafalanBabussalam')||'[]');let box=document.getElementById('boxHafalan');if(data.length==0){box.innerHTML='<div class="text-gray-400 text-center p-2">Belum ada setoran</div>';return;}box.innerHTML=data.slice(-8).reverse().map(d=>"<div class='p-2 bg-amber-50 border rounded-xl flex justify-between'><span><b>"+d.nama+"</b> - "+d.surah+" "+d.ayat+"</span><span>"+d.status+"</span></div>").join('');}catch(e){}}
+async function loadJadwalSholat(){let box=document.getElementById('jadwalSholatBox');box.innerHTML='Memuat...';try{let today=new Date();let res=await fetch(`https://api.aladhan.com/v1/timingsByCity/${today.getDate()}-${today.getMonth()+1}-${today.getFullYear()}?city=Jember&country=Indonesia&method=2`);let j=await res.json();let t=j.data.timings;let list=[['Subuh',t.Fajr],['Dzuhur',t.Dhuhr],['Ashar',t.Asr],['Maghrib',t.Maghrib],['Isya',t.Isha]];document.getElementById('tglHijri').innerText=j.data.date.hijri.day+' '+j.data.date.hijri.month.en+' '+j.data.date.hijri.year+' H';box.innerHTML=list.map(([n,j])=>"<div class='flex justify-between p-3 bg-green-50 border rounded-xl'><span>"+n+"</span><span class='font-bold'>"+j+"</span></div>").join('');}catch(e){box.innerHTML="<div class='space-y-2'><div class='flex justify-between p-3 bg-green-50 rounded-xl'><span>Subuh</span><b>03:43</b></div><div class='flex justify-between p-3 bg-green-50 rounded-xl'><span>Dzuhur</span><b>11:13</b></div><div class='flex justify-between p-3 bg-green-50 rounded-xl'><span>Ashar</span><b>14:21</b></div><div class='flex justify-between p-3 bg-green-50 rounded-xl'><span>Maghrib</span><b>17:23</b></div><div class='flex justify-between p-3 bg-green-50 rounded-xl'><span>Isya</span><b>18:33</b></div></div>";}}
+updateNisab();updateUI();
+</script>
+</body>
+</html>
